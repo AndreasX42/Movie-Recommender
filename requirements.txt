@@ -1,0 +1,14 @@
+# langchain and openai
+openai
+langchain
+pypdf
+streamlit
+chromadb
+tiktoken
+
+# huggingface stuff
+sentence_transformers
+
+# misc
+dask
+python-dotenv

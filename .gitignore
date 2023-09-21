@@ -1,0 +1,12 @@
+# env variables
+.env
+
+# local stuff
+.venv/
+.vscode/
+.ipynb_checkpoints/
+
+
+# misc
+data/datasets.zip
+data/desc.docx
