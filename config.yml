@@ -1,0 +1,12 @@
+# vectorstore path
+ChromaDBPath: chromadb/
+
+# csv files
+MovieCsv: data/movies.csv
+UserCsv: data/user_history.csv
+
+# used embedding model
+EmbeddingModel: BAAI/bge-small-en-v1.5
+EmbeddingDevice: cpu
+EmbeddingDim: 384
+EmbeddingNormalized: True

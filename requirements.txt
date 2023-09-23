@@ -2,13 +2,16 @@
 openai
 langchain
 pypdf
-streamlit
-chromadb
 tiktoken
 
-# huggingface stuff
+# vectorstore db
+chromadb
+
+# gui
+streamlit
+
+# huggingface
 sentence_transformers
 
 # misc
-dask
 python-dotenv

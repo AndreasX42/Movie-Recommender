@@ -1,11 +1,15 @@
 # env variables
 .env
 
+# chromadb
+chromadb/
+
 # local stuff
 .venv/
 .vscode/
 .ipynb_checkpoints/
-
+notebooks/.ipynb_checkpoints
+utils/__pycache__/*
 
 # misc
 data/datasets.zip
