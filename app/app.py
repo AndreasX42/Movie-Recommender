@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_smorest import Api
 
 from api_resources.endpoints import blp as MovieRequestBlueprint
@@ -17,5 +17,13 @@ def create_app():
 
     api = Api(app)
     api.register_blueprint(MovieRequestBlueprint)
+
+    @app.route("/")
+    def home():
+        return render_template("index.html")
+
+    @app.route("/apidocs.html")
+    def apidocs():
+        return render_template("apidocs.html")
 
     return app
