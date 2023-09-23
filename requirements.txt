@@ -14,4 +14,7 @@ streamlit
 sentence_transformers
 
 # misc
+flask
+flask-smorest
 python-dotenv
+marshmallow

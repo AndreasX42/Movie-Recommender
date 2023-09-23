@@ -1,0 +1,10 @@
+version: "3"
+services:
+  flask-api:
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/app

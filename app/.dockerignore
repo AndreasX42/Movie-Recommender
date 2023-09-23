@@ -1,0 +1,35 @@
+# Repo-specific DockerIgnore -------------------------------------------------------------------------------------------
+.git
+.gitignore
+.cache
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+.vscode/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# dotenv
+.env
+
+# virtualenv
+.venv*
+venv*/
+ENV*/
+
+# mkdocs documentation
+/site
+
+# Thumbnails
+._*
