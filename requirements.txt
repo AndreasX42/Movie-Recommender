@@ -16,5 +16,5 @@ streamlit
 # misc
 flask
 flask-smorest
-python-dotenv
 marshmallow
+python-dotenv

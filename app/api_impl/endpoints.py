@@ -4,6 +4,8 @@ from flask_smorest import Blueprint, abort
 from api_impl.schemas import RecommendationSchemaOutbound, RequestSchemaInbound
 from db_provider.db import client, movie_collection, user_collection
 
+import utils.create_vectorstores
+
 blp = Blueprint(
     "Movie Requests",
     "movie_requests",
@@ -20,7 +22,7 @@ class MovieRequestForUser(MethodView):
             return {
                 "movie_description": request_data["movie_description"],
                 "message1": user_collection.get(ids=user_id)["metadatas"][0]["userId"],
-                "message2": movie_collection.get(ids="1")["metadatas"],
+                "message2": "x",  # movie_collection.get(ids="1")["metadatas"],
             }
         except KeyError:
             abort(404, message="Item not found.")

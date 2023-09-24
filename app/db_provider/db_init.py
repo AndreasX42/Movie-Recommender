@@ -15,6 +15,9 @@ CONFIG = yaml.safe_load(open(os.path.join(ROOT, "config.yml"), encoding="utf-8")
 
 def getOrCreateChromaDb():
     """Check if chromadb exists by looking for the users collection. If not, we set it up."""
+
+    logging.info("Checking for Chromadb.")
+
     try:
         chromadb.PersistentClient(
             path=os.path.join(ROOT, CONFIG["ChromaDBPath"])

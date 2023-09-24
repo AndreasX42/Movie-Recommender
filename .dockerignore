@@ -2,6 +2,7 @@
 .git
 .gitignore
 .cache
+**.log
 
 # data/chromadb
 data/datasets.zip
@@ -16,6 +17,7 @@ chromadb/
 .vscode/
 
 # Jupyter Notebook
+**/.ipynb_checkpoints
 notebooks/
 
 # dotenv

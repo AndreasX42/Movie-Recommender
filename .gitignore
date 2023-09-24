@@ -7,10 +7,10 @@ chromadb/
 # local stuff
 .venv/
 .vscode/
-.ipynb_checkpoints/
-notebooks/.ipynb_checkpoints
+
+**/*.log
+**/.ipynb_checkpoints
 **/__pycache__
-app/api_resources/__pycache__/*
 
 # misc
 data/datasets.zip
