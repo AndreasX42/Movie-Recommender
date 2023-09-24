@@ -6,7 +6,7 @@ from pathlib import Path
 
 from flask import Flask, render_template
 from flask_smorest import Api
-from db_provider import db_init
+from app.db_provider import db_init
 
 logging.basicConfig(
     level=logging.INFO,
@@ -24,7 +24,7 @@ CONFIG = yaml.safe_load(open(os.path.join(ROOT, "config.yml"), encoding="utf-8")
 # check if ChromaDb is provided
 db_init.getOrCreateChromaDb()
 
-from api_impl.endpoints import blp as MovieRequestBlueprint
+from app.api_impl import MovieRequestBlueprint
 
 
 def create_app():
@@ -44,9 +44,5 @@ def create_app():
     @app.route("/")
     def home():
         return render_template("index.html")
-
-    @app.route("/apidocs.html")
-    def apidocs():
-        return render_template("apidocs.html")
 
     return app
