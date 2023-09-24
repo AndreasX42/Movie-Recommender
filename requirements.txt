@@ -11,7 +11,7 @@ chromadb
 streamlit
 
 # huggingface
-sentence_transformers
+#sentence_transformers
 
 # misc
 flask

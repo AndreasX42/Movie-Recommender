@@ -3,22 +3,20 @@
 .gitignore
 .cache
 
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+# data/chromadb
+data/datasets.zip
+data/desc.docx
+chromadb/
 
+# Byte-compiled / optimized / DLL files
+**/__pycache__
+**/*.pyc
+**.py[cod]
+*$py.class
 .vscode/
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# PyBuilder
-target/
-
 # Jupyter Notebook
-.ipynb_checkpoints
+notebooks/
 
 # dotenv
 .env
@@ -27,9 +25,3 @@ target/
 .venv*
 venv*/
 ENV*/
-
-# mkdocs documentation
-/site
-
-# Thumbnails
-._*

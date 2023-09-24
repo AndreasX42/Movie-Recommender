@@ -7,4 +7,9 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./:/app
+      - ./app:/base/app
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1024M

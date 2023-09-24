@@ -1,11 +1,13 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 
-from api_resources.schemas import RecommendationSchemaOutbound, RequestSchemaInbound
-from db import client, movie_collection, user_collection
+from api_impl.schemas import RecommendationSchemaOutbound, RequestSchemaInbound
+from db_provider.db import client, movie_collection, user_collection
 
 blp = Blueprint(
-    "Recommendations", "recommendations", description="Operations on movie request"
+    "Movie Requests",
+    "movie_requests",
+    description="Description of Movie Recommender REST API endpoints",
 )
 
 

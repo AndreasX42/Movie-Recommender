@@ -9,7 +9,7 @@ chromadb/
 .vscode/
 .ipynb_checkpoints/
 notebooks/.ipynb_checkpoints
-utils/__pycache__/*
+**/__pycache__
 app/api_resources/__pycache__/*
 
 # misc

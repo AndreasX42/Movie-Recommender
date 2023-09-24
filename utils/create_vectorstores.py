@@ -2,6 +2,7 @@ from tqdm.auto import tqdm
 import pandas as pd
 import chromadb
 import yaml
+import logging
 import os
 
 from utils.helper import _calculate_average_embedding, _get_embedding_model
@@ -17,6 +18,8 @@ def _create_movie_collection() -> None:
     Args:
         model (HuggingFaceEmbeddings): _description_
     """
+
+    logging.info("Creating vectorstore for movies. This can take some time.")
 
     client = chromadb.PersistentClient(path=CONFIG["ChromaDBPath"])
     movie_collection = client.create_collection(
@@ -75,6 +78,8 @@ def _create_user_collection() -> None:
     Args:
         model (HuggingFaceEmbeddings): _description_
     """
+
+    logging.info("Creating vectorstore for users. This can take some time.")
 
     # preprocess user data
     users_df = pd.read_csv(CONFIG["UserCsv"])
