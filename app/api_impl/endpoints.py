@@ -21,7 +21,7 @@ blp = Blueprint(
 # to further add information to the request and find a better movie
 
 
-@blp.route("/api/rec_by_userid/<string:user_id>")
+@blp.route("/api/req_by_userid/<string:user_id>")
 class MovieRequestForUser(MethodView):
     # @blp.arguments(RequestSchemaInbound)
     @blp.response(200, RecommendationSchemaOutbound)
@@ -38,7 +38,7 @@ class MovieRequestForUser(MethodView):
         return prepare_result(movie_data)
 
 
-@blp.route("/api/rec")
+@blp.route("/api/req_general")
 class MovieRequestGeneral(MethodView):
     # @blp.arguments(RequestSchemaInbound)
     @blp.response(200, RecommendationSchemaOutbound)
@@ -51,7 +51,7 @@ class MovieRequestGeneral(MethodView):
         return prepare_result(movie_data)
 
 
-@blp.route("/api/rec_by_descr")
+@blp.route("/api/req_by_descr")
 class MovieRequestByDescription(MethodView):
     @blp.arguments(DescriptionSchemaInbound)
     @blp.response(200, RecommendationSchemaOutbound)
