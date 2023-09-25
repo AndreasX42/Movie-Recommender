@@ -1,7 +1,10 @@
 FROM python:3.11
 
-# Expose the port the app runs on
-EXPOSE 5000
+# install sentence_transformers early for caching
+RUN pip install sentence_transformers
+
+# Port the app is running on
+EXPOSE 7860
 
 # Install dependencies
 WORKDIR /base
@@ -26,7 +29,6 @@ COPY ./ ./
 RUN unzip -o ./data/chromadb.zip -d ./ && rm ./data/chromadb.zip
 
 # Define environment variable
-ENV FLASK_APP=./app/app.py
-ENV FLASK_DEBUG=True
 
-CMD ["flask", "run", "--host", "0.0.0.0"]
+# primary command
+CMD ["python", "utils/gradio_launcher.py"]

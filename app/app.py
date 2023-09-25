@@ -6,7 +6,7 @@ from pathlib import Path
 
 from flask import Flask, render_template
 from flask_smorest import Api
-from app.db_provider import db_init
+from app.api_impl import MovieRequestBlueprint
 
 logging.basicConfig(
     level=logging.INFO,
@@ -20,11 +20,6 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
 
 CONFIG = yaml.safe_load(open(os.path.join(ROOT, "config.yml"), encoding="utf-8"))
-
-# check if ChromaDb is provided
-db_init.getOrCreateChromaDb()
-
-from app.api_impl import MovieRequestBlueprint
 
 
 def create_app():
@@ -43,6 +38,10 @@ def create_app():
 
     @app.route("/")
     def home():
-        return render_template("index.html")
+        return render_template(
+            "index.html",
+            localhost_port=os.environ.get("LOCALHOST_PORT"),
+            gradio_port=os.environ.get("GRADIO_PORT"),
+        )
 
     return app

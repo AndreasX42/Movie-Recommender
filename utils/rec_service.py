@@ -1,9 +1,18 @@
 from langchain.vectorstores import Chroma
 from utils.helper import _get_embedding_model
-from app.db_provider.db import client
 import numpy as np
+import chromadb
+import os
+import yaml
+
+current_path = os.path.abspath(__file__)
+config_file_path = os.path.abspath(os.path.join(current_path, "..", "..", "config.yml"))
+CONFIG = yaml.safe_load(open(config_file_path, encoding="utf-8"))
+
 
 model = _get_embedding_model()
+
+client = chromadb.PersistentClient(CONFIG["ChromaDBPath"])
 
 movies_chroma = Chroma(
     client=client,
@@ -48,9 +57,9 @@ def get_suggestion_for_user(user_id: int) -> dict:
 
     movie_data = movies_chroma.similarity_search_by_vector_with_relevance_scores(
         user_embedding[0], k=1
-    )[0][0].metadata
+    )[0][0]
 
-    return movie_data
+    return prepare_response(movie_data)
 
 
 def get_suggestion_general() -> dict:
@@ -70,4 +79,38 @@ def get_suggestion_general() -> dict:
 
     movie_idx = np.random.choice(range(5))
 
-    return movie_data[movie_idx][0].metadata
+    movie_data = movie_data[movie_idx][0]
+
+    return prepare_response(movie_data)
+
+
+def get_suggestion_by_description(description: str) -> dict:
+    """Retuns a movie using some description provided by the user
+
+    Args:
+        description (str): movie description entered e.g. in gradio app
+
+    Returns:
+        dict: movie
+    """
+
+    embedding = _get_embedding_model().embed_query(description)
+
+    movie_data = movies_chroma.similarity_search_by_vector(embedding, k=1)[0]
+
+    return prepare_response(movie_data)
+
+
+def prepare_response(movie_data):
+    """prepares movie_data to hand back to api caller by attaching first 150 chars of movie plot
+
+    Args:
+        movie_data (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    response = dict(movie_data.metadata)
+    response |= {"plot": f"{movie_data.page_content[:150]}..."}
+
+    return response

@@ -8,7 +8,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <style>
+    <style id="styleTag">
+        /* Common Styles */
         body {
             display: flex;
             flex-direction: column;
@@ -23,11 +24,10 @@
         iframe {
             width: 100%;
             height: 500px;
-            border: none;
+            border: None;
         }
 
         footer {
-            background-color: #f8f9fa;
             padding: 10px;
             text-align: center;
         }
@@ -36,8 +36,37 @@
             font-weight: bold;
         }
 
-        .nav-link {
-            color: #007bff;
+        /* Light Mode Styles */
+        body.light-mode,
+        .light-mode iframe {
+            background-color: #FFFFFF;
+        }
+
+        .navbar-light {
+            background-color: #e0e0e0;
+        }
+
+        .light-mode footer {
+            background-color: #e0e0e0;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode,
+        .dark-mode iframe {
+            background-color: #0B0F19;
+            color: #FFFFFF;
+        }
+
+        .navbar-dark {
+            background-color: #282828;
+        }
+
+        .navbar-dark .navbar-brand {
+            color: #ffffff;
+        }
+
+        .dark-mode footer {
+            background-color: #282828;
         }
     </style>
 </head>
@@ -45,7 +74,7 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav id="navbar" class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="#">Movie Recommender</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
@@ -53,7 +82,7 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://127.0.0.1:5050/swagger-ui" target="_blank">API</a>
+                    <a class="nav-link" href="http://localhost:{{ localhost_port }}/swagger-ui" target="_blank">API</a>
                 </li>
             </ul>
         </div>
@@ -64,7 +93,7 @@
         <div class="container">
             <h2 class="my-4">Welcome to Movie Recommender!</h2>
             <!-- Embed Gradio/Streamlit app -->
-            <iframe src="URL_OF_YOUR_GRADIO_OR_STREAMLIT_APP"></iframe>
+            <iframe src="http://localhost:{{ gradio_port }}"></iframe>
         </div>
     </main>
 
@@ -77,6 +106,18 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Color Scheme Script -->
+    <script>
+        function setModeBasedOnPreference() {
+            var isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.body.className = isDarkMode ? 'dark-mode' : 'light-mode';
+
+            var navbar = document.getElementById('navbar');
+            navbar.className = 'navbar navbar-expand-lg ' + (isDarkMode ? 'navbar-dark' : 'navbar-light');
+        }
+        setModeBasedOnPreference();
+    </script>
 </body>
 
 </html>

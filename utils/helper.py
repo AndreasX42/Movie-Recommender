@@ -10,10 +10,10 @@ CONFIG = yaml.safe_load(open(config_file_path, encoding="utf-8"))
 
 
 def _get_embedding_model() -> HuggingFaceEmbeddings:
-    """_summary_
+    """Getter for the embedding model
 
     Returns:
-        _type_: _description_
+        HuggingFaceEmbeddings: the embedding model
     """
 
     model = HuggingFaceEmbeddings(

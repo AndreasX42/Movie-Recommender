@@ -1,7 +1,15 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from utils.recommendation_service import get_suggestion_for_user, get_suggestion_general
-from .schemas import RecommendationSchemaOutbound, RequestSchemaInbound
+from utils import (
+    get_suggestion_for_user,
+    get_suggestion_general,
+    get_suggestion_by_description,
+)
+from app.api_impl.schemas import (
+    RecommendationSchemaOutbound,
+    RequestSchemaInbound,
+    DescriptionSchemaInbound,
+)
 
 blp = Blueprint(
     "Movie Requests",
@@ -43,6 +51,19 @@ class MovieRequestGeneral(MethodView):
         return prepare_result(movie_data)
 
 
+@blp.route("/get_new_user_recommendation_by_description")
+class MovieRequestByDescription(MethodView):
+    @blp.arguments(DescriptionSchemaInbound)
+    @blp.response(200, RecommendationSchemaOutbound)
+    def get(self, request_data):
+        movie_data = get_suggestion_by_description(request_data["description"])
+
+        if not movie_data:
+            abort(404, message="Something went wrong.")
+
+        return prepare_result(movie_data)
+
+
 # TODO: the movies.csv column names are returned here as keys
 # and should be changed to adhere to API specs in schemas.py
 def prepare_result(movie_data: dict) -> dict:
@@ -55,6 +76,7 @@ def prepare_result(movie_data: dict) -> dict:
         "wiki_page",
         "genres",
         "movie_id",
+        "plot",
     ]
     old_keys = movie_data.keys()
     key_mapping = dict(zip(old_keys, new_keys))

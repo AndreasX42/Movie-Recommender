@@ -10,7 +10,12 @@ class RecommendationSchemaOutbound(Schema):
     origin = fields.Str(required=True)
     wiki_page = fields.Str(required=True)
     cast = fields.Str(required=True)
+    plot = fields.Str(required=True)
 
 
 class RequestSchemaInbound(Schema):
     user_id = fields.Str(required=True)
+
+
+class DescriptionSchemaInbound(Schema):
+    description = fields.Str(required=True)

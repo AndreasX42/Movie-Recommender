@@ -1,11 +1,27 @@
 version: "3"
 services:
-  flask-api:
+  flask:
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.flask
       context: ./
     ports:
       - "5050:5000"
     volumes:
       - ./app:/base/app
       - ./utils:/base/utils
+    environment:
+      - GRADIO_PORT=7860
+      - LOCALHOST_PORT=5050
+  gradio:
+    build:
+      dockerfile: Dockerfile.gr
+      context: ./
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./utils:/base/utils
+    environment:
+      - GRADIO_PORT=7860
+    depends_on:
+      - flask
+    restart: on-failure:10

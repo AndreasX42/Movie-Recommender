@@ -12,6 +12,12 @@ config_file_path = os.path.abspath(os.path.join(current_path, "..", "..", "confi
 CONFIG = yaml.safe_load(open(config_file_path, encoding="utf-8"))
 
 
+def create_chromadb():
+    """creates chromadb with movies and users collections"""
+    _create_movie_collection()
+    _create_user_collection()
+
+
 def _create_movie_collection() -> None:
     """_summary_
 
@@ -119,9 +125,3 @@ def _create_user_collection() -> None:
 
         # add all to upsert list
         user_collection.upsert(ids=ids, embeddings=embedding, metadatas=meta)
-
-
-def create_chromadb():
-    """creates chromadb with movies and users collections"""
-    _create_movie_collection()
-    _create_user_collection()
