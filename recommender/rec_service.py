@@ -1,5 +1,5 @@
 from langchain.vectorstores import Chroma
-from utils.helper import _get_embedding_model
+from recommender.utils import _get_embedding_model
 import numpy as np
 import chromadb
 import os
@@ -111,6 +111,6 @@ def prepare_response(movie_data):
         _type_: _description_
     """
     response = dict(movie_data.metadata)
-    response |= {"plot": f"{movie_data.page_content[:150]}..."}
+    response |= {"plot": f"{movie_data.page_content[:250]}..."}
 
     return response

@@ -1,27 +1,27 @@
 version: "3"
 services:
-  flask:
+  app:
     build:
-      dockerfile: Dockerfile.flask
+      dockerfile: Dockerfile.app
       context: ./
+    restart: always
     ports:
       - "5050:5000"
     volumes:
       - ./app:/base/app
-      - ./utils:/base/utils
     environment:
       - GRADIO_PORT=7860
       - LOCALHOST_PORT=5050
   gradio:
     build:
-      dockerfile: Dockerfile.gr
-      context: ./
+      dockerfile: Dockerfile
+      context: ./chat_module
     ports:
       - "7860:7860"
-    volumes:
-      - ./utils:/base/utils
     environment:
-      - GRADIO_PORT=7860
+      - FLASK_HOST=app
+      - FLASK_PORT=5000
     depends_on:
-      - flask
-    restart: on-failure:10
+      # ! does not wait until app is up and running
+      - app
+    restart: on-failure:3

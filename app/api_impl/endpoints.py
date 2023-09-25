@@ -1,6 +1,6 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from utils import (
+from recommender import (
     get_suggestion_for_user,
     get_suggestion_general,
     get_suggestion_by_description,
@@ -21,7 +21,7 @@ blp = Blueprint(
 # to further add information to the request and find a better movie
 
 
-@blp.route("/get_new_user_recommendation/<string:user_id>")
+@blp.route("/api/rec_by_userid/<string:user_id>")
 class MovieRequestForUser(MethodView):
     # @blp.arguments(RequestSchemaInbound)
     @blp.response(200, RecommendationSchemaOutbound)
@@ -38,7 +38,7 @@ class MovieRequestForUser(MethodView):
         return prepare_result(movie_data)
 
 
-@blp.route("/get_new_user_recommendation")
+@blp.route("/api/rec")
 class MovieRequestGeneral(MethodView):
     # @blp.arguments(RequestSchemaInbound)
     @blp.response(200, RecommendationSchemaOutbound)
@@ -51,7 +51,7 @@ class MovieRequestGeneral(MethodView):
         return prepare_result(movie_data)
 
 
-@blp.route("/get_new_user_recommendation_by_description")
+@blp.route("/api/rec_by_descr")
 class MovieRequestByDescription(MethodView):
     @blp.arguments(DescriptionSchemaInbound)
     @blp.response(200, RecommendationSchemaOutbound)

@@ -1,8 +1,5 @@
 import os
-import sys
-import yaml
 import logging
-from pathlib import Path
 
 from flask import Flask, render_template
 from flask_smorest import Api
@@ -12,14 +9,6 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(levelname)s - %(asctime)s - %(message)s",
 )
-
-
-FILE = Path(__file__).resolve()
-ROOT = FILE.parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.append(str(ROOT))
-
-CONFIG = yaml.safe_load(open(os.path.join(ROOT, "config.yml"), encoding="utf-8"))
 
 
 def create_app():

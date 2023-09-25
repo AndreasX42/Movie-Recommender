@@ -5,7 +5,7 @@ import yaml
 import logging
 import os
 
-from utils.helper import _calculate_average_embedding, _get_embedding_model
+from recommender.utils import _calculate_average_embedding, _get_embedding_model
 
 current_path = os.path.abspath(__file__)
 config_file_path = os.path.abspath(os.path.join(current_path, "..", "..", "config.yml"))
