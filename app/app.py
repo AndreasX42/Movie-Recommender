@@ -7,8 +7,6 @@ logging.basicConfig(
     format="%(levelname)s - %(asctime)s - %(message)s",
 )
 
-logging.info(f"myport: {os.environ.get('LOCALHOST_API_PORT')}")
-
 
 def create_app():
     app = Flask(__name__)
