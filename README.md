@@ -3,7 +3,7 @@ Implementation of a simple movie recommender using embedding models, ChromaDb, L
 
 ## Overview
 
-We take the dataset of movies and build a ChromaDb vectorstore of the embeddings of the movie descriptions. For every user we take the watch history and calculate an average of the embeddings
+We take the dataset of movies and build a ChromaDB vectorstore from the embeddings of the movie descriptions. For every user we take the watch history and calculate an average of the embeddings
 of the movies watched in the past to provide a recommendation. Additionally on the Flask frontend we provide a simple Gradio app where one can enter some description of what movie they want
 to watch and serve some suggestion.
 
@@ -18,5 +18,5 @@ to watch and serve some suggestion.
 ## Setup 👨‍💻
 
 We run the app by starting up three docker containers, one for the frontend 'app', one for the Gradio chat module and one for the backend that also manages the API requests.
-The command for this is simply 'docker-compose up (--build)'. A documentation for the API is provided 'localhost:5055/swagger-ui'.
+The command for this is simply 'docker-compose up (--build)'. A documentation for the API is provided at 'localhost:5055/swagger-ui'.
 
