@@ -3,7 +3,7 @@ Implementation of a simple movie recommender using embedding models, ChromaDb, L
 
 ## Overview
 
-We take the datasets of movies and build a ChromaDb vectorstore of the embeddings of the movie descriptions. For every user we take the watch history and calculate an average of the embeddings
+We take the dataset of movies and build a ChromaDb vectorstore of the embeddings of the movie descriptions. For every user we take the watch history and calculate an average of the embeddings
 of the movies watched in the past to provide a recommendation. Additionally on the Flask frontend we provide a simple Gradio app where one can enter some description of what movie they want
 to watch and serve some suggestion.
 
