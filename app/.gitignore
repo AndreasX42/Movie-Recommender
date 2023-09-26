@@ -1,6 +1,0 @@
-.venv/*
-.vscode/*
-instance/*
-__pycache__/*
-models/__pycache__/*
-resources/__pycache__/*

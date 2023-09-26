@@ -1,11 +1,11 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from recommender import (
+from req_service import (
     get_suggestion_for_user,
     get_suggestion_general,
     get_suggestion_by_description,
 )
-from app.api_impl.schemas import (
+from api_impl.schemas import (
     RecommendationSchemaOutbound,
     RequestSchemaInbound,
     DescriptionSchemaInbound,

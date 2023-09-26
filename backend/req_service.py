@@ -1,5 +1,5 @@
 from langchain.vectorstores import Chroma
-from recommender.utils import _get_embedding_model
+from utils import _get_embedding_model
 import numpy as np
 import chromadb
 import os

@@ -3,7 +3,7 @@ services:
   app:
     build:
       dockerfile: Dockerfile
-      context: ./
+      context: ./app
     restart: always
     ports:
       - "5050:5000"
@@ -11,7 +11,15 @@ services:
       - ./app:/base/app
     environment:
       - GRADIO_PORT=7860
-      - LOCALHOST_PORT=5050
+      - LOCALHOST_API_PORT=5055
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    ports:
+      - "5055:5000"
+    volumes:
+      - ./backend:/base/backend
   gradio:
     build:
       dockerfile: Dockerfile
@@ -19,9 +27,9 @@ services:
     ports:
       - "7860:7860"
     environment:
-      - FLASK_HOST=app
-      - FLASK_PORT=5000
-    depends_on:
-      # ! does not wait until app is up and running
-      - app
-    restart: on-failure:3
+      - API_HOST=backend
+      - API_PORT=5000
+    #depends_on:
+    #  # ! does not wait until app is up and running
+    #  - app
+    #restart: on-failure:3

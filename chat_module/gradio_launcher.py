@@ -8,11 +8,11 @@ def get_movie(input):
     params = dict(description=input)
 
     # make the GET request with the JSON data in the body
-    FLASK_HOST = os.environ.get("FLASK_HOST")
-    FLASK_PORT = os.environ.get("FLASK_PORT")
+    API_HOST = os.environ.get("API_HOST")
+    API_PORT = os.environ.get("API_PORT")
 
     response = requests.get(
-        url=f"http://{FLASK_HOST}:{FLASK_PORT}/api/req_by_descr",
+        url=f"http://{API_HOST}:{API_PORT}/api/req_by_descr",
         json=params,
     )
 
