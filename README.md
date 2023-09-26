@@ -20,3 +20,6 @@ to watch and serve some suggestion.
 We run the app by starting up three docker containers, one for the frontend 'app', one for the Gradio chat module and one for the backend that also manages the API requests.
 The command for this is simply 'docker-compose up (--build)'. A documentation for the API is provided at 'localhost:5055/swagger-ui'.
 
+## Frontend 🔥
+
+![imagen](https://github.com/AndreasX42/Movie-Recommender/assets/141482745/62157e1a-671a-4d40-bb89-e4b0f7e956f5)
