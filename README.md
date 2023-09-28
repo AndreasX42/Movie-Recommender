@@ -1,6 +1,10 @@
 # Movie-Recommender
 Implementation of a simple movie recommender using embedding models, ChromaDb, LangChain and Flask API.
 
+## TODO 💻
+- Implement Like/Dislike button for the gradio app to collect user feedback
+- Provide recommendation metrics like HR or MRR on a separate dashboard
+
 ## Overview
 
 We take the dataset of movies and build a ChromaDB vectorstore from the embeddings of the movie descriptions. For every user we take the watch history and calculate an average of the embeddings
